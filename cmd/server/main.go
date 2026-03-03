@@ -215,6 +215,7 @@ func emptyarr(arr []int) []int {
 	for i := 0; i < len(arr); i++ {
 		empty = append(empty, num*arr[i])
 	}
+	fmt.Println("hello world")
 	return empty
 }
 func multiplearr(arr2 [][]int) []int {
