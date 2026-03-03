@@ -240,6 +240,16 @@ func divi2(arr3 []int) []int {
 	}
 	return divi2
 }
+func reverse(arr4 []int) []int {
+	i := 0
+	j := len(arr4) - 1
+	for i < j {
+		arr4[i], arr4[j] = arr4[j], arr4[i]
+		i++
+		j--
+	}
+	return arr4
+}
 
 func main() {
 	arr := []int{1, 2, 3, 4, 5}
@@ -250,4 +260,6 @@ func main() {
 	fmt.Println(sum(10, 20))
 	arr3 := []int{2, 7, 8, 9, 4}
 	fmt.Println(divi2(arr3))
+	arr4 := []int{1, 2, 3, 4, 5, 6}
+	fmt.Println(reverse(arr4))
 }
