@@ -240,6 +240,7 @@ func divi2(arr3 []int) []int {
 	}
 	return divi2
 }
+
 func reverse(arr4 []int) []int {
 	i := 0
 	j := len(arr4) - 1
@@ -249,6 +250,15 @@ func reverse(arr4 []int) []int {
 		j--
 	}
 	return arr4
+}
+
+func misss(arr5 []int, n int) int {
+	expsum := n * (n + 1) / 2
+	actualsum := 0
+	for i := 0; i < len(arr5); i++ {
+		actualsum += arr5[i]
+	}
+	return expsum - actualsum
 }
 
 func main() {
@@ -262,4 +272,7 @@ func main() {
 	fmt.Println(divi2(arr3))
 	arr4 := []int{1, 2, 3, 4, 5, 6}
 	fmt.Println(reverse(arr4))
+	arr5 := []int{1, 2, 4, 5}
+	n := 5
+	fmt.Println(misss(arr5, n))
 }
