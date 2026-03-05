@@ -189,19 +189,18 @@ func main() {
 }*/
 package main
 
-import "fmt"
+import (
+	"fmt"
 
-/*func divide(a int, b int) (int, int) {
+	"github.com/mahaksizariya/go-practice/practiceModule"
+)
+
+func divide(a int, b int) (int, int) {
 	quotient := a / b
 	remainder := a % b
 	return quotient, remainder
 }
-func main() {
-	quotient, remainder := divide(10, 3)
-	fmt.Println("Quotient:", quotient)
-	fmt.Println("Remainder:", remainder)
-}
-*/
+
 func multiplyby2(arr []int) []int {
 	var multiple []int
 	for i := 0; i < len(arr); i++ {
@@ -209,6 +208,7 @@ func multiplyby2(arr []int) []int {
 	}
 	return multiple
 }
+
 func emptyarr(arr []int) []int {
 	var empty []int
 	num := 2
@@ -218,6 +218,7 @@ func emptyarr(arr []int) []int {
 	fmt.Println("hello world")
 	return empty
 }
+
 func multiplearr(arr2 [][]int) []int {
 	var multiplearr []int
 	for i := 0; i < len(arr2); i++ {
@@ -227,10 +228,12 @@ func multiplearr(arr2 [][]int) []int {
 	}
 	return multiplearr
 }
+
 func sum(a int, b int) int {
 	fmt.Println("hello")
 	return a + b
 }
+
 func divi2(arr3 []int) []int {
 	var divi2 []int
 	for i := 0; i < len(arr3); i++ {
@@ -261,18 +264,74 @@ func misss(arr5 []int, n int) int {
 	return expsum - actualsum
 }
 
+func number(n int) []int {
+
+	var arr6 []int
+	x := 0
+
+	for i := 0; i < n; i++ {
+		x = x + 1
+		arr6 = append(arr6, x)
+	}
+
+	return arr6
+}
+
+func no(n int) []int {
+	var arr7 []int
+	for i := 0; i <= n; i++ {
+		arr7 = append(arr7, i)
+	}
+	return arr7
+}
+
+func div(arr8 []int) []int {
+	var arr9 []int
+	for i := 0; i < len(arr8); i++ {
+		q := arr8[i] / 2
+		arr9 = append(arr9, q)
+	}
+	return arr9
+}
+
 func main() {
+
+	quotient, remainder := divide(10, 3)
+	fmt.Println("Quotient:", quotient)
+	fmt.Println("Remainder:", remainder)
+
 	arr := []int{1, 2, 3, 4, 5}
 	fmt.Println(multiplyby2(arr))
+
 	fmt.Println(emptyarr(arr))
+
 	arr2 := [][]int{{1, 2}, {3, 4}, {5, 6}}
 	fmt.Println(multiplearr(arr2))
+
 	fmt.Println(sum(10, 20))
+
 	arr3 := []int{2, 7, 8, 9, 4}
 	fmt.Println(divi2(arr3))
+
 	arr4 := []int{1, 2, 3, 4, 5, 6}
 	fmt.Println(reverse(arr4))
+
 	arr5 := []int{1, 2, 4, 5}
 	n := 5
 	fmt.Println(misss(arr5, n))
+
+	result := number(5)
+	fmt.Println(result)
+
+	result1 := no(10)
+	fmt.Println(result1)
+
+	arr8 := []int{16, 18, 20, 14, 12, 8, 6}
+
+	ans := div(arr8)
+
+	fmt.Println(ans)
+
+	practiceModule.Struct()
+	practiceModule.AddStudent()
 }
