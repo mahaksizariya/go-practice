@@ -332,6 +332,6 @@ func main() {
 
 	fmt.Println(ans)
 
-	practiceModule.Struct()
+	/*practiceModule.Struct()*/
 	practiceModule.AddStudent()
 }

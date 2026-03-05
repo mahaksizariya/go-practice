@@ -4,38 +4,38 @@ import "fmt"
 
 //basic struct
 
-type Student struct {
+/*type Student struct {
 	Name  string
 	age   int
 	marks int
 }
 
-func Struct() {
+/*func Struct() {
 
-	//basic struct
-	/*	var a1 student
-		a1.Name = "mhk"
-		a1.age = 12
-		a1.marks = 345
-		fmt.Println(a1)
-	*/
+//basic struct
+/*	var a1 student
+	a1.Name = "mhk"
+	a1.age = 12
+	a1.marks = 345
+	fmt.Println(a1)
+*/
 
-	//anonymous struct basic
+//anonymous struct basic
 
-	/*college := struct {
-		Name  string
-		age   int
-		marks int
-	}{
-		Name:  "mehak",
-		age:   22,
-		marks: 323,
-	}
-	fmt.Println(college)*/
+/*college := struct {
+	Name  string
+	age   int
+	marks int
+}{
+	Name:  "mehak",
+	age:   22,
+	marks: 323,
+}
+fmt.Println(college)*/
 
-	//anonymous struct with slice
+//anonymous struct with slice
 
-	college := []struct {
+/*college := []struct {
 		Name string
 		Age  int
 	}{
@@ -45,12 +45,12 @@ func Struct() {
 	fmt.Println(college)
 
 }
-
+*/
 func AddStudent() {
 	// you are given an array of student data you have to append it to the data struct for Student
 	// given student data is
 
-	givenStudentData := []map[string]interface{}{
+	/*givenStudentData := []map[string]interface{}{
 		{
 			"Name":  "Ram",
 			"Age":   23,
@@ -97,7 +97,7 @@ func AddStudent() {
 
 		]
 	*/
-	var students []Student
+	/*var students []Student
 
 	for _, data := range givenStudentData {
 
@@ -110,5 +110,43 @@ func AddStudent() {
 		students = append(students, studentData)
 	}
 
-	fmt.Println(students)
+	fmt.Println(students)*/
+
+	//map create basic
+	/*students := map[string]  map[string]int{
+	/*student["Math"] = 90
+	student["english"] = 90
+
+	/*fmt.Println(student)
+	fmt.Println(student["Math"])*/
+	/*	"Math":    90,
+			"English": 80,
+		}
+		/*
+			for key, value := range student {
+				fmt.Println(value, key)*/
+	/*delete(student, "Math")*/
+	/*fmt.Println(len(student))*/
+
+	/*"Gupta":{
+		"math":90,
+		"eng":80,
+	},
+	"Mhk":{
+		"math":50,
+		"eng":80,
+	},
+	for name, subjects := range students {
+		fmt.Println("student:",name)
+	}
+	for subjects,marks:=range subjects{
+		fmt.Println(subject,marks)
+	}*/
+	//BAISC POINTER EXAMPLE
+	x := 10
+	p := &x
+	fmt.Println(x)
+	fmt.Println(*p)
+	fmt.Println(p)
+
 }
