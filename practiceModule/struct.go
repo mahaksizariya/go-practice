@@ -2,6 +2,21 @@ package practiceModule
 
 import "fmt"
 
+type animal interface {
+	speak()
+}
+type dog struct{}
+
+func (d dog) speak() {
+	fmt.Println("dog barks")
+}
+
+type cat struct{}
+
+func (c cat) speak() {
+	fmt.Println("cat meows")
+}
+
 //basic struct
 
 /*type Student struct {
@@ -47,6 +62,13 @@ fmt.Println(college)*/
 }
 */
 func AddStudent() {
+
+	var a animal
+	a = dog{}
+	a.speak()
+	a = cat{}
+	a.speak()
+
 	// you are given an array of student data you have to append it to the data struct for Student
 	// given student data is
 
@@ -143,10 +165,10 @@ func AddStudent() {
 		fmt.Println(subject,marks)
 	}*/
 	//BAISC POINTER EXAMPLE
-	x := 10
+	/* x := 10
 	p := &x
 	fmt.Println(x)
 	fmt.Println(*p)
-	fmt.Println(p)
+	fmt.Println(p)*/
 
 }
