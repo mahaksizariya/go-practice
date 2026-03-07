@@ -1,4 +1,137 @@
-/*for i := 0; i <= 10; i++ {
+/* package main
+
+import (
+	"context"
+	"fmt"
+	"log"
+	"net/http"
+	"os"
+	"os/signal"
+	"time"
+
+	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
+	"github.com/manthan-it-solutions/ams-api/internal/config"
+	"github.com/manthan-it-solutions/ams-api/internal/middleware"
+	"github.com/manthan-it-solutions/ams-api/internal/web/routes"
+	"github.com/manthan-it-solutions/ams-api/internal/web/utils"
+)
+
+func main() {
+
+	if err := godotenv.Load(".env"); err != nil {
+		log.Fatal("Error accessing .env file")
+	}
+
+	// ENV
+	var ginMode string = utils.GetEnv("GIN_MODE")
+	var port string = utils.GetEnv("PORT")
+
+	// GIN MODE
+	if ginMode == "release" {
+		gin.SetMode(gin.ReleaseMode)
+		log.Println("Release Mode Running")
+	} else {
+		log.Println("Debug Mode Running")
+	}
+
+	dbInit, err := config.InitDB()
+	if err != nil {
+		log.Fatal("MySQL Connection Error:", err)
+	}
+	defer config.CloseDB()
+
+	log.Printf("MySQL Connected")
+
+	// ROUTER SETUP
+	var router *gin.Engine = gin.Default()
+
+	// start cron jobs
+	// utils.OBDCallCronFinal(dbInit)
+	// utils.MISReportCron(dbInit)
+
+	// MIDDLEWARES
+	router.Use(middleware.CorsHandler())
+	router.Use(middleware.RateLimitHandler())
+	router.Use(middleware.ErrorHandler())
+
+	var uptime string = time.Now().Format("2006-01-02 15:04")
+	router.GET("/", func(c *gin.Context) {
+		fmt.Println("Project  Running")
+		c.JSON(200, gin.H{
+			"data":         "Project Running",
+			"serverUpTime": uptime,
+		})
+	})
+
+	var api *gin.RouterGroup = router.Group("/api")
+
+	var auth *gin.RouterGroup = api.Group("/auth")
+	routes.AuthRoutes(auth, dbInit)
+
+	var balanceMaster *gin.RouterGroup = api.Group("/balance-master")
+	balanceMaster.Use(middleware.AuthenticationHandler(dbInit))
+	routes.BalanceMasterRoutes(balanceMaster, dbInit)
+
+	var groupMaster *gin.RouterGroup = api.Group("/group-master")
+	groupMaster.Use(middleware.AuthenticationHandler(dbInit))
+	routes.GroupMasterRoutes(groupMaster, dbInit)
+
+	var report *gin.RouterGroup = api.Group("/report")
+	report.Use(middleware.AuthenticationHandler(dbInit))
+	routes.ReportRoutes(report, dbInit)
+
+	var createUsers *gin.RouterGroup = api.Group("/users")
+	createUsers.Use(middleware.AuthenticationHandler(dbInit))
+	routes.CreateUsersRoutes(createUsers, dbInit)
+	var voicetemplate *gin.RouterGroup = api.Group("/voice")
+
+	voicetemplate.Use(middleware.AuthenticationHandler(dbInit))
+
+	routes.VoiceRoutes(voicetemplate, dbInit)
+
+	var quick *gin.RouterGroup = api.Group("/quick")
+	quick.Use(middleware.AuthenticationHandler(dbInit))
+
+	routes.QuickCampaginRoutes(quick, dbInit)
+
+	var callback *gin.RouterGroup = api.Group("/callback")
+
+	routes.CallbackApiRoutes(callback, dbInit)
+
+	var server *http.Server = &http.Server{
+		Addr:    fmt.Sprintf(":%s", port),
+		Handler: router,
+	}
+
+	go func() {
+		fmt.Printf("Listening and serving HTTP on :%s \n", port)
+		if err := server.ListenAndServe(); err != nil {
+			fmt.Println(err.Error())
+		}
+	}()
+
+	quit := make(chan os.Signal, 1)
+	signal.Notify(quit, os.Interrupt)
+	<-quit
+
+	fmt.Println("\nShutdown signal received")
+
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
+
+	if err := server.Shutdown(ctx); err != nil {
+		fmt.Printf("Server forced to shutdown: %s\n", err)
+	} else {
+		fmt.Println("Server gracefully stopped")
+	}
+
+}
+
+
+
+
+for i := 0; i <= 10; i++ {
 	fmt.Print(i)
 }
 */
